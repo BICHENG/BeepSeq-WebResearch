@@ -14,6 +14,7 @@
 
 ```bash
 pip install beepseq-webresearch
+# or pip install from git
 ```
 
 ### 启动
