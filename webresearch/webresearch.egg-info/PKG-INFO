@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: webresearch
+Version: 1.0.0
+Summary: A powerful web research tool for crawling and extracting content from websites.
+Home-page: https://github.com/yourusername/webresearch
+Author: Your Name
+Author-email: your.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+A powerful web research tool for crawling and extracting content from websites.

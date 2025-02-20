@@ -1,0 +1,7 @@
+setup.py
+webresearch.egg-info/PKG-INFO
+webresearch.egg-info/SOURCES.txt
+webresearch.egg-info/dependency_links.txt
+webresearch.egg-info/entry_points.txt
+webresearch.egg-info/requires.txt
+webresearch.egg-info/top_level.txt
