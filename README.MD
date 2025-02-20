@@ -58,13 +58,13 @@ webresearch search "Deepseek R1 910b 部署" --max-results 3 --fulltext
 
 webresearch 可以有效地提取知乎文章的正文，例如：
 
-![image-20250221040301971](.\doc\imgs\image-20250221040301971.png)
+![image-20250221040301971](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221040301971.png)
 
 **GitHub 项目 README 提取**
 
 可以直接获取 GitHub 项目主页的 README 正文，例如：
 
-![image-20250221035632162](./doc\imgs\image-20250221035632162.png)
+![image-20250221035632162](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221035632162.png)
 
 ### 简易RAG任务：如何正确区分苹果酱和界面脂
 
@@ -90,11 +90,11 @@ webresearch 可以有效地提取知乎文章的正文，例如：
 }
 ```
 
-![image-20250221050647617](.\doc\imgs\image-20250221050647617.png)
+![image-20250221050647617](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221050647617.png)
 
 **附：喜闻乐见的DSR1官网**
 
-![image-20250221051237510](./doc\imgs\image-20250221051237510.png)
+![image-20250221051237510](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221051237510.png)
 
 **结论：对于简易问题，如此粗暴的方法获得recall，以及小参数模型，可以达到较为准确的效果**
 
