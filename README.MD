@@ -98,7 +98,7 @@ webresearch 可以有效地提取知乎文章的正文，例如：
 
 ![image-20250221051237510](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221051237510.png)
 
-**结论：对于简易问题，如此粗暴的方法获得recall，以及小参数模型，可以达到较为准确的效果**
+**结论：对于简易问题/垂直问题，如此粗暴的方法获得检索数据，以及使用小参数低精度模型，也可以达到较为准确的效果。对于信息化转智能化而言，应当重视。**
 
 **另附AI搜索产品的效果：**
 
