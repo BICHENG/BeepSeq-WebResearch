@@ -1,4 +1,4 @@
-# BeepSeq WebReearch 
+# BeepSeq-WebResearch
 
 ## 核心功能
 
@@ -66,7 +66,9 @@ webresearch 可以有效地提取知乎文章的正文，例如：
 
 ![image-20250221035632162](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221035632162.png)
 
-### 简易RAG任务：如何正确区分苹果酱和界面脂
+### 小测试：对比Deepseek官网，WebRAG提问：如何正确区分苹果酱和界面脂
+
+**经验：垂直问题+全文+格式质量比模型大小和召回数量更重要**
 
 假设你通过 LLM 完成实体提取，生成以下检索式（*工具即将推出，包括prompt版和复古NLP版*）：
 
