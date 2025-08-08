@@ -20,7 +20,7 @@ setup(
         "uvicorn",
         "fastapi",
         "nodriver",
-        "duckduckgo-search",
+        "ddgs",
         "lxml_html_clean",
         "py3langid",
         "brotli",
@@ -44,7 +44,7 @@ setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: Public Domain",
         "Operating System :: OS Independent",
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

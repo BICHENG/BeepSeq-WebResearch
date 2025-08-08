@@ -1,7 +1,9 @@
-# cli.py
+#!/usr/bin/env python3
+"""
+cli.py - Command Line Interface for BeepSeq WebResearch tool.
+"""
 import typer
 import uvicorn
-import httpx
 import asyncio
 from typing import Optional, List
 from rich import print
@@ -10,74 +12,76 @@ from core import create_app, CrawlerConfig
 
 app = typer.Typer()
 
-# 启动服务端
 @app.command()
 def serve(port: int = 8000):
-    """Start the web research server."""
+    """启动FastAPI服务器"""
+    print(f"🚀 [bold green]Starting server at http://localhost:{port}[/bold green]")
     uvicorn.run(create_app(), host="0.0.0.0", port=port)
 
-# 搜索并获取结果
 @app.command()
 def search(
     query: str,
     max_results: int = typer.Option(3, "--max-results", "-m", help="Maximum number of search results."),
     fulltext: bool = typer.Option(False, "--fulltext", "-f", help="Fetch full text of the search results."),
-    server_url: str = typer.Option("http://localhost:8000", "--server-url", "-s", help="URL of the running server.")
 ):
-    """Search the web and optionally fetch full text from the server."""
+    """使用DuckDuckGo进行搜索，并可选择性提取全文"""
+    from core import WebCrawler
     
+    async def run_search():
+        crawler = WebCrawler()
+        try:
+            if fulltext:
+                config = CrawlerConfig(embed_images=True, save_markdown=True)
+                urls, _ = crawler.search(query, max_results)
+                results = await crawler.crawl(urls, config)
+                for url, content in results.items():
+                    print(f"URL: {url}")
+                    print(Markdown(content))
+            else:
+                urls, snippets = crawler.search(query, max_results)
+                for url, snippet in zip(urls, snippets):
+                    print(f"URL: {url}\nSnippet: {snippet}\n")
+        finally:
+            await crawler.close()
+            
+    asyncio.run(run_search())
 
-    async def fetch_search_results():
-        async with httpx.AsyncClient() as client:
-            # 发送搜索请求
-            search_response = await client.get(
-                f"{server_url}/search",
-                params={
-                    "query": query,
-                    "max_results": max_results,
-                    "fulltext": fulltext,
-                },
-                timeout=120
-            )
-            search_response.raise_for_status()
-            return search_response.json()
-
-    # 异步获取结果
-    results = asyncio.run(fetch_search_results())
-
-    # 打印结果
-    if fulltext:
-        for url, content in results["results"].items():
-            print(f"## {url}")
-            print(Markdown(content))
-    else:
-        for url, body in results["results"]:
-            print(f"## {url}")
-            print(Markdown(body))
-
-# 读取指定 URL 的内容
 @app.command()
 def read(
     url: str = typer.Argument(..., help="The URL to fetch content from."),
-    server_url: str = typer.Option("http://localhost:8000", "--server-url", "-s", help="URL of the running server.")
+    md: bool = typer.Option(True, "--md/--no-md", help="Save as Markdown."),
+    html: bool = typer.Option(False, "--html/--no-html", help="Save as HTML."),
+    output_dir: str = typer.Option("output", "--output-dir", "-o", help="Output directory."),
+    use_trafilatura: bool = typer.Option(False, "--use-trafilatura", help="Force use of trafilatura extractor."),
+    no_embed: bool = typer.Option(False, "--no-embed", help="Disable image embedding."),
 ):
-    """Fetch and display content from a specific URL."""
-    async def fetch_url_content():
-        async with httpx.AsyncClient() as client:
-            # 发送读取请求
-            read_response = await client.get(
-                f"{server_url}/read",
-                params={"url": url},timeout=120
-            )
-            read_response.raise_for_status()
-            return read_response.json()
+    """从URL提取内容，嵌入图像，并保存为Markdown或HTML。"""
+    from core import WebCrawler
 
-    # 异步获取结果
-    content = asyncio.run(fetch_url_content())
+    if not md and not html:
+        print("⚠️ [bold yellow]No output format specified. Defaulting to Markdown.[/bold yellow]")
+        md = True
 
-    # 打印结果
-    print(f"## {url}")
-    print(Markdown(content))
-    
+    config = CrawlerConfig(
+        save_markdown=md,
+        save_html=html,
+        output_dir=output_dir,
+        embed_images=not no_embed,
+        use_readability=not use_trafilatura
+    )
+
+    async def run_crawl():
+        crawler = WebCrawler()
+        try:
+            await crawler.crawl([url], config)
+        finally:
+            await crawler.close()
+
+    method = "trafilatura" if use_trafilatura else "readability-lxml"
+    print(f"🚀 [bold green]Starting crawl for '{url}' using {method}...[/bold green]")
+    asyncio.run(run_crawl())
+    print("✅ [bold green]Crawl finished.[/bold green]")
+
+
 if __name__ == "__main__":
     app()
