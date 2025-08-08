@@ -8,13 +8,13 @@ This document demonstrates the practical application and effectiveness of `BeepS
 
 `BeepSeq-WebResearch` can efficiently extract the main content from Zhihu articles.
 
-![Zhihu Example](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221040301971.png)
+![Zhihu Example](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/docs/imgs/image-20250221040301971.png)
 
 ### Extracting GitHub Project READMEs
 
 It can directly fetch the main content of a GitHub project's README from its homepage.
 
-![GitHub Example](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221035632162.png)
+![GitHub Example](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/docs/imgs/image-20250221035632162.png)
 
 ---
 
@@ -47,13 +47,13 @@ We can use `BeepSeq-WebResearch` to quickly gather reference materials. Here's a
 
 ### RAG Result Analysis
 
-![RAG Result](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221050647617.png)
+![RAG Result](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/docs/imgs/image-20250221050647617.png)
 
 ### Comparison with Commercial AI Search
 
 For context, here's a result from a commercial AI search product, DeepSeek's DSR1:
 
-![DeepSeek Result](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/doc/imgs/image-20250221051237510.png)
+![DeepSeek Result](https://raw.githubusercontent.com/BICHENG/BeepSeq-WebResearch/refs/heads/main/docs/imgs/image-20250221051237510.png)
 
 **Conclusion:** For specialized or niche queries, this direct, high-quality extraction method can provide very accurate results, even when paired with a smaller, less quantized language model. This highlights the importance of data quality in the "information to intelligence" pipeline.
 
